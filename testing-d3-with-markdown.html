@@ -87,7 +87,7 @@ var chart = d3.box()
     .width(width)
     .height(height);
 
-d3.csv("http://bl.ocks.org/mbostock/raw/4061502/0a200ddf998aa75dfdb1ff32e16b680a15e5cb01/morley.csv", function(error, csv) {
+d3.csv("./morley.csv", function(error, csv) {
   var data = [];
 
   csv.forEach(function(x) {
