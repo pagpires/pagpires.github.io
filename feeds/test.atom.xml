@@ -1,5 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hong's Blog</title><link href="https://pagpires.github.io/" rel="alternate"></link><link href="https://pagpires.github.io/feeds/test.atom.xml" rel="self"></link><id>https://pagpires.github.io/</id><updated>2016-08-07T19:00:00-04:00</updated><entry><title>test post</title><link href="https://pagpires.github.io/test-ipynb-blog.html" rel="alternate"></link><published>2016-08-07T19:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-07:test-ipynb-blog.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hong's Blog</title><link href="https://pagpires.github.io/" rel="alternate"></link><link href="https://pagpires.github.io/feeds/test.atom.xml" rel="self"></link><id>https://pagpires.github.io/</id><updated>2016-08-09T00:35:00-04:00</updated><entry><title>"Testing d3 with Markdown"</title><link href="https://pagpires.github.io/testing-d3-with-markdown.html" rel="alternate"></link><published>2016-08-09T00:35:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-09:testing-d3-with-markdown.html</id><summary type="html">&lt;p&gt;This is from a &lt;a href="http://stackoverflow.com/questions/22651346/how-to-embed-a-d3-js-example-to-the-jekyll-blog-post"&gt;Stack Overflow question&lt;/a&gt; about embedding a d3.js example in a Jekyll blog post (written in Markdown).&lt;/p&gt;
+&lt;p&gt;This should work, but it looks like the challenge from the &lt;a href="http://bl.ocks.org/mbostock/4061502"&gt;referenced d3 example&lt;/a&gt; is have a proper target element in the document. The example uses an &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; element, which embeds another HTML document where the target element is &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;. Here, I've embedded the same iframe:&lt;/p&gt;
+&lt;p&gt;And here, I've used d3 to target an element &lt;code&gt;&amp;lt;div id="example"&amp;gt;&lt;/code&gt; in this document:&lt;/p&gt;
+&lt;style&gt;
+
+div.example {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.box {
+  font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
+
+&lt;/style&gt;
+
+&lt;script src="http://d3js.org/d3.v3.min.js"&gt;&lt;/script&gt;
+
+&lt;script src="http://bl.ocks.org/mbostock/raw/4061502/0a200ddf998aa75dfdb1ff32e16b680a15e5cb01/box.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+
+var margin = {top: 10, right: 50, bottom: 20, left: 50},
+    width = 120 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var min = Infinity,
+    max = -Infinity;
+
+var chart = d3.box()
+    .whiskers(iqr(1.5))
+    .width(width)
+    .height(height);
+
+d3.csv("http://bl.ocks.org/mbostock/raw/4061502/0a200ddf998aa75dfdb1ff32e16b680a15e5cb01/morley.csv", function(error, csv) {
+  var data = [];
+
+  csv.forEach(function(x) {
+    var e = Math.floor(x.Expt - 1),
+        r = Math.floor(x.Run - 1),
+        s = Math.floor(x.Speed),
+        d = data[e];
+    if (!d) d = data[e] = [s];
+    else d.push(s);
+    if (s &gt; max) max = s;
+    if (s &lt; min) min = s;
+  });
+
+  chart.domain([min, max]);
+
+  var svg = d3.select("div#example").selectAll("svg")
+      .data(data)
+    .enter().append("svg")
+      .attr("class", "box")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.bottom + margin.top)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(chart);
+
+  setInterval(function() {
+    svg.datum(randomize).call(chart.duration(1000));
+  }, 2000);
+});
+
+function randomize(d) {
+  if (!d.randomizer) d.randomizer = randomizer(d);
+  return d.map(d.randomizer);
+}
+
+function randomizer(d) {
+  var k = d3.max(d) * .02;
+  return function(d) {
+    return Math.max(min, Math.min(max, d + k * (Math.random() - .5)));
+  };
+}
+
+// Returns a function to compute the interquartile range.
+function iqr(k) {
+  return function(d, i) {
+    var q1 = d.quartiles[0],
+        q3 = d.quartiles[2],
+        iqr = (q3 - q1) * k,
+        i = -1,
+        j = d.length;
+    while (d[++i] &lt; q1 - iqr);
+    while (d[--j] &gt; q3 + iqr);
+    return [i, j];
+  };
+}
+
+&lt;/script&gt;
+
+&lt;div id="example"&gt;&lt;/div&gt;
+
+&lt;p&gt;To do this, I made the following changes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;change &lt;code&gt;var svg = d3.select("body").selectAll("svg")&lt;/code&gt; to &lt;code&gt;var svg = d3.select("div#example").selectAll("svg")&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;save &lt;code&gt;morley.csv&lt;/code&gt; to the root directory of my Jekyll site, then change &lt;code&gt;d3.csv("morley.csv", function(error, csv)&lt;/code&gt; to &lt;code&gt;d3.csv("/morley.csv", function(error, csv)&lt;/code&gt; (copied this file into project to resolve cross-site scripting errors)&lt;/li&gt;
+&lt;li&gt;change &lt;code&gt;&amp;lt;script src="box.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt; to &lt;code&gt;&amp;lt;script src="http://bl.ocks.org/mbostock/raw/4061502/0a200ddf998aa75dfdb1ff32e16b680a15e5cb01/box.js"&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;create a new element called &lt;code&gt;&amp;lt;div id="example"&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Check out &lt;a href="https://raw.githubusercontent.com/nicksuch/nicksuch.github.io/master/_posts/2014-03-26-d3-sample.md"&gt;the code for this post on GitHub&lt;/a&gt; to see how I did it!&lt;/p&gt;</summary><category term="d3"></category></entry><entry><title>test post</title><link href="https://pagpires.github.io/test-ipynb-blog.html" rel="alternate"></link><published>2016-08-07T19:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-07:test-ipynb-blog.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
