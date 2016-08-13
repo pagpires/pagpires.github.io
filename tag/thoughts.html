@@ -1,95 +1,70 @@
-<!doctype html>
-<html lang="">	
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8"/>
-	<title>thoughts - Hong's Blog</title>	
-	<meta name="author" content="Xinyu Hong">
-	
+        <meta charset="utf-8" />
+        <title>Hong's Blog - thoughts</title>
+        <link rel="stylesheet" href="https://pagpires.github.io/theme/css/main.css" />
+        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong's Blog Atom Feed" />
 
-	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
-	<link rel="stylesheet" href="https://pagpires.github.io/theme/css/main.css" type="text/css" />
-		
-
-    <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong's Blog Atom Feed" />
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 </head>
-	
-<body>
 
-    <div class="container">
-	  
-	  <header role="banner">
-	    <div class="feeds">
-	        <a href="https://pagpires.github.io/feeds/all.atom.xml" rel="alternate"><img src="https://pagpires.github.io/theme/images/icons/feed-32px.png" alt="atom feed"/></a>
-	    </div>
-		<a href="https://pagpires.github.io" class="title">Hong's Blog</a>
-      </header>
-	
-	  <div class="wrapper">
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://pagpires.github.io/">Hong's Blog </a></h1>
+                <nav><ul>
+                    <li><a href="https://pagpires.github.io/category/misc.html">Misc</a></li>
+                </ul>
+                </nav>
+        </header><!-- /#banner -->
 
-		  <div role="main" class="content">
-
-<h1>Post tagged: thoughts</h1>
-
-<article class="summary">
-<div class="metadata">
-  <time datetime="2016-08-13T16:37:55.566632-04:00" pubdate>Sat 13 August 2016</time>
-    <address class="vcard author">
-      by <a class="url fn" href="https://pagpires.github.io/author/xinyu-hong.html">Xinyu Hong</a>
-    </address>
-  in <a href="https://pagpires.github.io/category/misc.html">Misc</a>
-<p class="tags">tagged <a href="https://pagpires.github.io/tag/thoughts.html">thoughts</a></p></div>  <div>
-    <h2>
-      <a href="https://pagpires.github.io/its-just-a-curve.html" rel="bookmark" title="Permalink to It's just a curve">It's just a curve</a>
-    </h2>
-    <p><p>A bit thoughts about having this blog</p></p>
-  </div>
-</article>
-<div class="pagination">
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://pagpires.github.io/its-just-a-curve.html">It's just a curve</a></h1>
+<footer class="post-info">
+        <span>Sat 13 August 2016</span>
+<span>| tags: <a href="https://pagpires.github.io/tag/thoughts.html">thoughts</a></span>
+</footer><!-- /.post-info --><p>After trying different tools for my blogging system, I eventually settled with <strong>Markdown</strong> + <strong>pelican</strong> + <strong>github page</strong>. Here are my reasons.</p>
+<h5>Markdown</h5>
+<p>I need a system to write easily. WordPress and Markdown are my choices however Markdown has a better geeky flavor. More importantly, I will integrate the interactive data visualization into the webpage. WordPress can do this with some plugins however it doesn't support JSON to be upload, therefore I would have to upload my data source in my server while uploading the CSS and JS script to WordPress, which is annoying. After I saw this <a href="http://www.nicksuch.com/2014/03/26/d3-sample/">blog</a>, it became very natural that Markdown is <em>the choice</em> to me.</p>
+<h5>Pelican</h5>
+<p>Choosing Markdown for blogging I will need a tool to generate static web pages. Since I plan to write some data analysis reports and to record my progress in <a href="https://www.kaggle.com/">Kaggle</a> every once a while, I will often use ipython notebook and integrate it into my blog. Then <a href="http://docs.getpelican.com/en/3.6.3/">Pelican</a>, a python-based tool for generating static web pages, seems to serve that role, especially after I saw this <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">tutorial</a> for setting up a data science blog.</p>
+<h5>GitHub</h5>
+<p>Choosing GitHub is just to add some more geeky flavor to this blog. This might also force me to be familiar with project version control, which is an essential skill to me.</p>
+<hr />
+<p>Basically that's how I ended up with these three gadgets for my blogging system. Either in terms of proficiency of these three tools, or in terms of skillfulness in the data science field that I'm going to cover in this blog, I'm both a newbie. However, for a systematically trained scientist-to-be like me, nothing can be hard after some dedicated time and efforts. It's just a learning curve, isn't it?</p>                </article>
+<p class="paginator">
     Page 1 / 1
-</div>
+</p>
+            </aside><!-- /#featured -->
+            </ol><!-- /#posts-list -->
+            </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
-		  </div>	
-		  
-		  <div class="sidebar">
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
 
-	        <nav>
-	          <h2>Categories</h2>
-	          <ul>
-	              <li ><a href="https://pagpires.github.io/category/misc.html">Misc</a></li>
-	          </ul>
-	        </nav>
-
-	          <aside>
-	          <h2>Social</h2>
-			    <ul class="social">
-				  <li><a href="#">You can add links in your config file</a><i></i></li>
-				  <li><a href="#">Another social link</a><i></i></li>
-			    </ul>
-			  </aside>
-
-	          <aside>
-	            <h2>Blogroll</h2>
-	            <ul>
-	                <li><a href="http://getpelican.com/">Pelican</a></li>
-	                <li><a href="http://python.org/">Python.org</a></li>
-	                <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-	                <li><a href="#">You can modify those links in your config file</a></li>
-	            </ul>
-	          </aside>
-
-		  </div>
-
-	  </div>
-
-      <footer>
-		<p role="contentinfo">
-		  © 2013 Xinyu Hong - Proudly powered by <a href="http://alexis.notmyidea.org/pelican/">pelican</a>. Theme <a href="https://github.com/fle/pelican-simplegrey">pelican-simplegrey</a>.
-    	</p>
-
-	  </footer>	
-
-	</div>
-	
+        <footer id="contentinfo" class="body">
+                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
+        </footer><!-- /#contentinfo -->
 
 </body>
 </html>
