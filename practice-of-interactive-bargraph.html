@@ -182,7 +182,7 @@
             elemSelect.attr("fill","orange");
             var point = d3.mouse(this),
                 xPosition = point[0],
-                yPosition = elemSelect.attr("y")-10;
+                yPosition = point[1];
             var tooltip = d3.select('div#barGraph').select('#tooltip');
             tooltip.style("left", xPosition+"px")
                 .style("top", yPosition+"px")
