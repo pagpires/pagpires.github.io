@@ -16,30 +16,212 @@
                 <h1><a href="https://pagpires.github.io/">Hong's Blog </a></h1>
                 <nav><ul>
                     <li><a href="https://pagpires.github.io/category/misc.html">Misc</a></li>
+                    <li><a href="https://pagpires.github.io/category/viz.html">Viz</a></li>
                 </ul>
                 </nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://pagpires.github.io/its-just-a-curve.html">It's just a curve</a></h1>
+                    <h1 class="entry-title"><a href="https://pagpires.github.io/practice-of-interactive-bargraph.html">Practice of interactive bargraph</a></h1>
 <footer class="post-info">
-        <span>Sat 13 August 2016</span>
+        <span>Sat 27 August 2016</span>
+
+</footer><!-- /.post-info --><hr />
+<p>Here below is my practice of interactive bargraph. Here are several features that I've introduced:
+- Data-based color
+- Highlighting of the mouse-hovered bar, smooth transition
+- A tooltip with a position defined by the mouse-hovered bar</p>
+<p>I basically followed the <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch10.html">tutorial</a> written by Scott Murray.</p>
+<p><html>
+<head></p>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
+    <span class="nc">.axis</span> <span class="nt">text</span><span class="p">{</span>
+        <span class="nb">font-family</span><span class="o">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nb">font-size</span><span class="o">:</span> <span class="m">11px</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nc">.axis</span> <span class="nt">path</span><span class="o">,</span> 
+    <span class="nc">.axi</span> <span class="nt">line</span><span class="p">{</span>
+        <span class="n">fill</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+        <span class="n">stroke</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span>
+        <span class="n">shape</span><span class="o">-</span><span class="n">rendering</span><span class="o">:</span> <span class="n">crispEdges</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nt">svg</span> <span class="nt">rect</span> <span class="nc">.hightlight</span><span class="p">{</span>
+        <span class="n">fill</span><span class="o">:</span> <span class="nb">orange</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nn">#tooltip</span> <span class="p">{</span>
+            <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+            <span class="nb">width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+            <span class="nb">height</span><span class="o">:</span> <span class="nb">auto</span><span class="p">;</span>
+            <span class="nb">padding</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+            <span class="nb">background-color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+            <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+            <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+            <span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+            <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">4px</span> <span class="m">4px</span> <span class="m">10px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">4</span><span class="p">);</span>
+            <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">4px</span> <span class="m">4px</span> <span class="m">10px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">4</span><span class="p">);</span>
+            <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="o">:</span> <span class="m">4px</span> <span class="m">4px</span> <span class="m">10px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">4</span><span class="p">);</span>
+            <span class="nb">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nn">#tooltip</span><span class="nc">.hidden</span> <span class="p">{</span>
+            <span class="nb">display</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nn">#tooltip</span> <span class="nt">p</span> <span class="p">{</span>
+            <span class="nb">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+            <span class="nb">font-family</span><span class="o">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+            <span class="nb">font-size</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+            <span class="nb">line-height</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nt">h3</span> <span class="p">{</span>
+            <span class="nb">text-align</span><span class="o">:</span> <span class="nb">center</span><span class="p">;</span>
+            <span class="nb">font-family</span><span class="o">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="p">}</span>
+
+
+
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p></head>
+<body>
+    <h3>Practice of interactive bargraph design</h3>
+    <div id="tooltip" class="hidden">
+        <p>The value of this category</p>
+        <p><span id="value">100</span>%</p>
+    </div>
+    <script type="text/javascript" src="d3.v3.min.js">
+    </script>
+    <script type="text/javascript">
+        var width = 500, 
+            height = 300, 
+            xPadding = 25, 
+            yPadding = 15;
+        var numN = 20,
+            numRange = 100;
+        var numList = [];
+        for (var i=0; i&lt;numN; i++){
+            numList.push(Math.floor(Math.random()<em>numRange));
+        }
+        //scale
+        var xScale = d3.scale.linear()
+            .domain([0, numList.length])
+            .range([0, width-2</em>xPadding]);
+        var yScale = d3.scale.linear()
+            .domain([0, d3.max(numList)])
+            .range([0, height-2<em>xPadding]);
+        var colScale = d3.scale.linear()
+            .domain([0, d3.max(numList)])
+            .range([50, 255]);
+        //draw bars
+        var barWidth = (width-xPadding</em>2)/numN*0.7;
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        svg.selectAll("g")
+            .data(numList)
+            .enter()
+            .append("g")
+            .attr("transform", "translate("+xPadding+","+yPadding+")")
+            .append("rect")
+            .attr("width", barWidth)          <br />
+            .attr("x", function(d,i){
+                return xScale(i);
+            })
+            .attr("y", function(d){
+                return height-yPadding-yScale(d);
+            })
+            .attr("height", function(d) {
+                return yScale(d);
+            })
+            .attr("fill", function(d){
+                return "rgb(0,0,"+Math.floor(colScale(d))+")";
+            });</p>
+<div class="highlight"><pre><span></span>      //text
+      svg.selectAll(&quot;g&quot;)
+          .append(&quot;text&quot;)
+          .text(function(d){
+            return d;
+          })
+          .attr(&quot;x&quot;, function(d,i) {
+            return xScale(i)+barWidth/2;
+          })
+          .attr(&quot;y&quot;, function(d){
+            return height-yPadding-yScale(d)+10;
+          })
+          .attr(&quot;fill&quot;, &quot;white&quot;)
+          .attr(&quot;text-anchor&quot;,&quot;middle&quot;)
+          .attr(&quot;font-family&quot;,&quot;sans-serif&quot;)
+          .attr(&quot;font-size&quot;,&quot;11px&quot;)
+      //axis
+      // var yAxis = d3.svg.axis()
+      //     .scale(yScale)
+      //     .orient(&quot;left&quot;)
+      //     .ticks(5);
+      // svg.append(&quot;g&quot;)
+      //     .attr(&quot;class&quot;,&quot;axis&quot;)
+      //     .attr(&quot;transform&quot;,&quot;translate(&quot;+xPadding+&quot;,&quot;+4*yPadding+&quot;)&quot;)
+      //     .call(yAxis);
+
+      //interactivity: highlight
+      svg.selectAll(&quot;g&quot;)
+          .on(&quot;mouseover&quot;,function(d){
+
+            var elemSelect = d3.select(this).select(&quot;rect&quot;);
+            elemSelect.attr(&quot;fill&quot;,&quot;orange&quot;);
+            var point = d3.mouse(this),
+                xPosition = point[0],
+                yPosition = elemSelect.attr(&quot;y&quot;)-10;
+            var tooltip = d3.select(&#39;body&#39;).select(&#39;#tooltip&#39;);
+            tooltip.style(&quot;left&quot;, xPosition+&quot;px&quot;)
+                .style(&quot;top&quot;, yPosition+&quot;px&quot;)
+            tooltip.select(&quot;#value&quot;).text(d);
+            tooltip.classed(&quot;hidden&quot;, false);
+          })
+          .on(&quot;mouseout&quot;, function(){
+            d3.select(this).select(&quot;rect&quot;)
+                .transition()
+                .duration(250)
+                .attr(&quot;fill&quot;, function(d){
+                    return &quot;rgb(0,0,&quot;+Math.floor(colScale(d))+&quot;)&quot;;
+                })
+            d3.select(&quot;#tooltip&quot;).classed(&quot;hidden&quot;, true);
+
+          });
+
+
+&lt;/script&gt;
+</pre></div>
+
+
+<p></body>
+</html></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://pagpires.github.io/its-just-a-curve.html" rel="bookmark"
+                           title="Permalink to It's just a curve">It's just a curve</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <span>Sat 27 August 2016</span>
 <span>| tags: <a href="https://pagpires.github.io/tag/thoughts.html">thoughts</a></span>
-</footer><!-- /.post-info --><p>After trying different tools for my blogging system, I eventually settled with <strong>Markdown</strong> + <strong>pelican</strong> + <strong>github page</strong>. Here are my reasons.</p>
-<h5>Markdown</h5>
-<p>I need a system to write easily. WordPress and Markdown are my choices however Markdown has a better geeky flavor. More importantly, I will integrate the interactive data visualization into the webpage. WordPress can do this with some plugins however it doesn't support JSON to be upload, therefore I would have to upload my data source in my server while uploading the CSS and JS script to WordPress, which is annoying. After I saw this <a href="http://www.nicksuch.com/2014/03/26/d3-sample/">blog</a>, it became very natural that Markdown is <em>the choice</em> to me.</p>
-<h5>Pelican</h5>
-<p>Choosing Markdown for blogging I will need a tool to generate static web pages. Since I plan to write some data analysis reports and to record my progress in <a href="https://www.kaggle.com/">Kaggle</a> every once a while, I will often use ipython notebook and integrate it into my blog. Then <a href="http://docs.getpelican.com/en/3.6.3/">Pelican</a>, a python-based tool for generating static web pages, seems to serve that role, especially after I saw this <a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/">tutorial</a> for setting up a data science blog.</p>
-<h5>GitHub</h5>
-<p>Choosing GitHub is just to add some more geeky flavor to this blog. This might also force me to be familiar with project version control, which is an essential skill to me.</p>
-<hr />
-<p>Basically that's how I ended up with these three gadgets for my blogging system. Either in terms of proficiency of these three tools, or in terms of skillfulness in the data science field that I'm going to cover in this blog, I'm both a newbie. However, for a systematically trained scientist-to-be like me, nothing can be hard after some dedicated time and efforts. It's just a learning curve, isn't it?</p>                </article>
+</footer><!-- /.post-info -->                <p>A bit thoughts about having this blog</p>
+                <a class="readmore" href="https://pagpires.github.io/its-just-a-curve.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
             </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
