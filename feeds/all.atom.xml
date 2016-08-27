@@ -1,172 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Hong's Blog</title><link href="https://pagpires.github.io/" rel="alternate"></link><link href="https://pagpires.github.io/feeds/all.atom.xml" rel="self"></link><id>https://pagpires.github.io/</id><updated>2016-08-27T15:47:37-04:00</updated><entry><title>Practice of interactive bargraph</title><link href="https://pagpires.github.io/practice-of-interactive-bargraph.html" rel="alternate"></link><published>2016-08-27T15:47:37-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:practice-of-interactive-bargraph.html</id><summary type="html">&lt;hr /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Hong's Blog</title><link href="https://pagpires.github.io/" rel="alternate"></link><link href="https://pagpires.github.io/feeds/all.atom.xml" rel="self"></link><id>https://pagpires.github.io/</id><updated>2016-08-27T15:52:33-04:00</updated><entry><title>Practice of interactive bargraph</title><link href="https://pagpires.github.io/practice-of-interactive-bargraph.html" rel="alternate"></link><published>2016-08-27T15:52:33-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:practice-of-interactive-bargraph.html</id><summary type="html">&lt;hr /&gt;
 &lt;p&gt;Here below is my practice of interactive bargraph. Here are several features that I've introduced:
 - Data-based color
 - Highlighting of the mouse-hovered bar, smooth transition
 - A tooltip with a position defined by the mouse-hovered bar&lt;/p&gt;
 &lt;p&gt;I basically followed the &lt;a href="http://chimera.labs.oreilly.com/books/1230000000345/ch10.html"&gt;tutorial&lt;/a&gt; written by Scott Murray.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt; &lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nc"&gt;.axis&lt;/span&gt; &lt;span class="nt"&gt;text&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nb"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;sans-serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="nb"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;11px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="nc"&gt;.axis&lt;/span&gt; &lt;span class="nt"&gt;path&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; 
-    &lt;span class="nc"&gt;.axi&lt;/span&gt; &lt;span class="nt"&gt;line&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;fill&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;black&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rendering&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;crispEdges&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="nt"&gt;svg&lt;/span&gt; &lt;span class="nt"&gt;rect&lt;/span&gt; &lt;span class="nc"&gt;.hightlight&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;fill&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;orange&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;style type="text/css"&gt;
+    .axis text{
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+    .axis path, 
+    .axi line{
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+    svg rect .hightlight{
+        fill: orange;
+    }
 
-    &lt;span class="nn"&gt;#tooltip&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;200px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;webkit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;border&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;moz&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;border&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;border&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;webkit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="n"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;moz&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="n"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;4px&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="n"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="nb"&gt;pointer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;events&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+    #tooltip {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
 
-        &lt;span class="nn"&gt;#tooltip&lt;/span&gt;&lt;span class="nc"&gt;.hidden&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+        #tooltip.hidden {
+            display: none;
+        }
 
-        &lt;span class="nn"&gt;#tooltip&lt;/span&gt; &lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;sans-serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;16px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;line-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+        #tooltip p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
 
-        &lt;span class="nt"&gt;h3&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nb"&gt;text-align&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;center&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="nb"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;sans-serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-
-
-
-&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+        h3 {
+            text-align: center;
+            font-family: sans-serif;
+        }
 
 
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;barGraph&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;Practice&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;interactive&lt;/span&gt; &lt;span class="nt"&gt;bargraph&lt;/span&gt; &lt;span class="nt"&gt;design&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;h3&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tooltip&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;value&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;this&lt;/span&gt; &lt;span class="nt"&gt;category&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt; &lt;span class="nt"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;value&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;100&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;%&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://d3js.org/d3.v3.min.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="nt"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;width&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;500&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; 
-        &lt;span class="nt"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;300&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; 
-        &lt;span class="nt"&gt;xPadding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;25&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; 
-        &lt;span class="nt"&gt;yPadding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;15&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;numN&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;20&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
-        &lt;span class="nt"&gt;numRange&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;100&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;numList&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="cp"&gt;[]&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-    &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;numN&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="nt"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;numList&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;numRange&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
 
-    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;scale&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;xScale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.scale.linear&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
-        &lt;span class="nc"&gt;.domain&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;numList.length&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.range&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;xPadding&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;yScale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.scale.linear&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
-        &lt;span class="nc"&gt;.domain&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;d3.max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;numList&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.range&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;xPadding&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;colScale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.scale.linear&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
-        &lt;span class="nc"&gt;.domain&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;d3.max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;numList&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.range&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-    &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;draw&lt;/span&gt; &lt;span class="nt"&gt;bars&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;barWidth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;width-xPadding&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;2&lt;/span&gt;&lt;span class="o"&gt;)/&lt;/span&gt;&lt;span class="nt"&gt;numN&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;0&lt;/span&gt;&lt;span class="nc"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-    &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;svg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.select&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;div#barGraph&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nc"&gt;.append&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;svg&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;width&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;width&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;height&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;height&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-    &lt;span class="nt"&gt;svg&lt;/span&gt;&lt;span class="nc"&gt;.selectAll&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.data&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;numList&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.enter&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
-        &lt;span class="nc"&gt;.append&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;transform&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;translate(&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;xPadding&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;yPadding&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.append&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rect&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;width&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;barWidth&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;            
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;i&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="n"&gt;xScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;y&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;height&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yPadding&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;height&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="n"&gt;yScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fill&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rgb(0,0,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/style&gt;
 
-      &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;text&lt;/span&gt;
-      &lt;span class="nt"&gt;svg&lt;/span&gt;&lt;span class="nc"&gt;.selectAll&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.append&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.text&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;i&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="n"&gt;xScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;barWidth&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;y&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;height&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yPadding&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;yScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fill&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;white&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;text-anchor&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;middle&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;font-family&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;sans-serif&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;font-size&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;11px&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;axis&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;yAxis&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.svg.axis&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.scale&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;yScale&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.orient&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.ticks&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;5&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="nt"&gt;svg&lt;/span&gt;&lt;span class="nc"&gt;.append&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;class&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;axis&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.attr&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;transform&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;translate(&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;xPadding&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;4&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nt"&gt;yPadding&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-      &lt;span class="o"&gt;//&lt;/span&gt;     &lt;span class="nc"&gt;.call&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;yAxis&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;div id="barGraph"&gt;
+  &lt;h3&gt;Practice of interactive bargraph design&lt;/h3&gt;
+  &lt;div id="tooltip" class="hidden"&gt;
+    &lt;p&gt;The value of this category&lt;/p&gt;
+    &lt;p&gt;&lt;span id="value"&gt;100&lt;/span&gt;%&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
-      &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;interactivity&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;highlight&lt;/span&gt;
-      &lt;span class="nt"&gt;svg&lt;/span&gt;&lt;span class="nc"&gt;.selectAll&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;g&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.on&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouseover&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;d&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;script type="text/javascript" src="https://d3js.org/d3.v3.min.js"&gt;
+&lt;/script&gt;
 
-            &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;elemSelect&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;d3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="n"&gt;elemSelect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fill&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;orange&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;d3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mouse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
-                &lt;span class="n"&gt;xPosition&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
-                &lt;span class="n"&gt;yPosition&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;elemSelect&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;y&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="m"&gt;-10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-            &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;tooltip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;d3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div#barGraph&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#tooltip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="n"&gt;tooltip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xPosition&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;px&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;top&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yPosition&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;px&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="n"&gt;tooltip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#value&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-            &lt;span class="n"&gt;tooltip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;classed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-          &lt;span class="nc"&gt;.on&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouseout&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;d3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rect&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transition&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-                &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;duration&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;250&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;fill&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;
-                    &lt;span class="n"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rgb(0,0,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;colScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-                &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-            &lt;span class="nt"&gt;d3&lt;/span&gt;&lt;span class="nc"&gt;.select&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#tooltip&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="nc"&gt;.classed&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;script type="text/javascript"&gt;
+    var width = 500, 
+        height = 300, 
+        xPadding = 25, 
+        yPadding = 15;
+    var numN = 20,
+        numRange = 100;
+    var numList = [];
+    for (var i=0; i&lt;numN; i++){
+        numList.push(Math.floor(Math.random()*numRange));
+    }
 
-          &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    //scale
+    var xScale = d3.scale.linear()
+        .domain([0, numList.length])
+        .range([0, width-2*xPadding]);
+    var yScale = d3.scale.linear()
+        .domain([0, d3.max(numList)])
+        .range([0, height-2*xPadding]);
+    var colScale = d3.scale.linear()
+        .domain([0, d3.max(numList)])
+        .range([50, 255]);
+    //draw bars
+    var barWidth = (width-xPadding*2)/numN*0.7;
+    var svg = d3.select("div#barGraph").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    svg.selectAll("g")
+        .data(numList)
+        .enter()
+        .append("g")
+        .attr("transform", "translate("+xPadding+","+yPadding+")")
+        .append("rect")
+        .attr("width", barWidth)            
+        .attr("x", function(d,i){
+            return xScale(i);
+        })
+        .attr("y", function(d){
+            return height-yPadding-yScale(d);
+        })
+        .attr("height", function(d) {
+            return yScale(d);
+        })
+        .attr("fill", function(d){
+            return "rgb(0,0,"+Math.floor(colScale(d))+")";
+        });
+
+      //text
+      svg.selectAll("g")
+          .append("text")
+          .text(function(d){
+            return d;
+          })
+          .attr("x", function(d,i) {
+            return xScale(i)+barWidth/2;
+          })
+          .attr("y", function(d){
+            return height-yPadding-yScale(d)+10;
+          })
+          .attr("fill", "white")
+          .attr("text-anchor","middle")
+          .attr("font-family","sans-serif")
+          .attr("font-size","11px")
+      //axis
+      // var yAxis = d3.svg.axis()
+      //     .scale(yScale)
+      //     .orient("left")
+      //     .ticks(5);
+      // svg.append("g")
+      //     .attr("class","axis")
+      //     .attr("transform","translate("+xPadding+","+4*yPadding+")")
+      //     .call(yAxis);
+
+      //interactivity: highlight
+      svg.selectAll("g")
+          .on("mouseover",function(d){
+
+            var elemSelect = d3.select(this).select("rect");
+            elemSelect.attr("fill","orange");
+            var point = d3.mouse(this),
+                xPosition = point[0],
+                yPosition = elemSelect.attr("y")-10;
+            var tooltip = d3.select('div#barGraph').select('#tooltip');
+            tooltip.style("left", xPosition+"px")
+                .style("top", yPosition+"px")
+            tooltip.select("#value").text(d);
+            tooltip.classed("hidden", false);
+          })
+          .on("mouseout", function(){
+            d3.select(this).select("rect")
+                .transition()
+                .duration(250)
+                .attr("fill", function(d){
+                    return "rgb(0,0,"+Math.floor(colScale(d))+")";
+                })
+            d3.select("#tooltip").classed("hidden", true);
+
+          });
 
 
-&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>It's just a curve</title><link href="https://pagpires.github.io/its-just-a-curve.html" rel="alternate"></link><published>2016-08-27T15:27:30-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:its-just-a-curve.html</id><summary type="html">&lt;p&gt;After trying different tools for my blogging system, I eventually settled with &lt;strong&gt;Markdown&lt;/strong&gt; + &lt;strong&gt;pelican&lt;/strong&gt; + &lt;strong&gt;github page&lt;/strong&gt;. Here are my reasons.&lt;/p&gt;
+&lt;/script&gt;</summary></entry><entry><title>It's just a curve</title><link href="https://pagpires.github.io/its-just-a-curve.html" rel="alternate"></link><published>2016-08-27T15:27:30-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:its-just-a-curve.html</id><summary type="html">&lt;p&gt;After trying different tools for my blogging system, I eventually settled with &lt;strong&gt;Markdown&lt;/strong&gt; + &lt;strong&gt;pelican&lt;/strong&gt; + &lt;strong&gt;github page&lt;/strong&gt;. Here are my reasons.&lt;/p&gt;
 &lt;h5&gt;Markdown&lt;/h5&gt;
 &lt;p&gt;I need a system to write easily. WordPress and Markdown are my choices however Markdown has a better geeky flavor. More importantly, I will integrate the interactive data visualization into the webpage. WordPress can do this with some plugins however it doesn't support JSON to be upload, therefore I would have to upload my data source in my server while uploading the CSS and JS script to WordPress, which is annoying. After I saw this &lt;a href="http://www.nicksuch.com/2014/03/26/d3-sample/"&gt;blog&lt;/a&gt;, it became very natural that Markdown is &lt;em&gt;the choice&lt;/em&gt; to me.&lt;/p&gt;
 &lt;h5&gt;Pelican&lt;/h5&gt;
