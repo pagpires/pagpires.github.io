@@ -38,8 +38,6 @@
 - Highlighting of the mouse-hovered bar, smooth transition
 - A tooltip with a position defined by the mouse-hovered bar</p>
 <p>I basically followed the <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch10.html">tutorial</a> written by Scott Murray.</p>
-<p><html>
-<head></p>
 <div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="o">&gt;</span>
     <span class="nc">.axis</span> <span class="nt">text</span><span class="p">{</span>
         <span class="nb">font-family</span><span class="o">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
@@ -73,6 +71,7 @@
         <span class="nn">#tooltip</span><span class="nc">.hidden</span> <span class="p">{</span>
             <span class="nb">display</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
         <span class="p">}</span>
+
         <span class="nn">#tooltip</span> <span class="nt">p</span> <span class="p">{</span>
             <span class="nb">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
             <span class="nb">font-family</span><span class="o">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
@@ -88,122 +87,119 @@
 
 
 <span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+
+
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;barGraph&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">h3</span><span class="o">&gt;</span><span class="nt">Practice</span> <span class="nt">of</span> <span class="nt">interactive</span> <span class="nt">bargraph</span> <span class="nt">design</span><span class="o">&lt;/</span><span class="nt">h3</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nt">div</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;tooltip&quot;</span> <span class="nt">class</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">The</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">this</span> <span class="nt">category</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;&lt;</span><span class="nt">span</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="o">&gt;</span><span class="nt">100</span><span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;%&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nt">src</span><span class="o">=</span><span class="s2">&quot;d3.v3.min.js&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">script</span> <span class="nt">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+    <span class="nt">var</span> <span class="nt">width</span> <span class="o">=</span> <span class="nt">500</span><span class="o">,</span> 
+        <span class="nt">height</span> <span class="o">=</span> <span class="nt">300</span><span class="o">,</span> 
+        <span class="nt">xPadding</span> <span class="o">=</span> <span class="nt">25</span><span class="o">,</span> 
+        <span class="nt">yPadding</span> <span class="o">=</span> <span class="nt">15</span><span class="o">;</span>
+    <span class="nt">var</span> <span class="nt">numN</span> <span class="o">=</span> <span class="nt">20</span><span class="o">,</span>
+        <span class="nt">numRange</span> <span class="o">=</span> <span class="nt">100</span><span class="o">;</span>
+    <span class="nt">var</span> <span class="nt">numList</span> <span class="o">=</span> <span class="cp">[]</span><span class="o">;</span>
+    <span class="nt">for</span> <span class="o">(</span><span class="nt">var</span> <span class="nt">i</span><span class="o">=</span><span class="nt">0</span><span class="o">;</span> <span class="nt">i</span><span class="o">&lt;</span><span class="nt">numN</span><span class="o">;</span> <span class="nt">i</span><span class="o">++)</span><span class="p">{</span>
+        <span class="n">numList</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">numRange</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span><span class="nt">scale</span>
+    <span class="nt">var</span> <span class="nt">xScale</span> <span class="o">=</span> <span class="nt">d3</span><span class="nc">.scale.linear</span><span class="o">()</span>
+        <span class="nc">.domain</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">numList.length</span><span class="cp">]</span><span class="o">)</span>
+        <span class="nc">.range</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nx">xPadding</span><span class="cp">]</span><span class="o">);</span>
+    <span class="nt">var</span> <span class="nt">yScale</span> <span class="o">=</span> <span class="nt">d3</span><span class="nc">.scale.linear</span><span class="o">()</span>
+        <span class="nc">.domain</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">d3.max</span><span class="p">(</span><span class="nx">numList</span><span class="p">)</span><span class="cp">]</span><span class="o">)</span>
+        <span class="nc">.range</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nx">xPadding</span><span class="cp">]</span><span class="o">);</span>
+    <span class="nt">var</span> <span class="nt">colScale</span> <span class="o">=</span> <span class="nt">d3</span><span class="nc">.scale.linear</span><span class="o">()</span>
+        <span class="nc">.domain</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span><span class="p">,</span> <span class="nx">d3.max</span><span class="p">(</span><span class="nx">numList</span><span class="p">)</span><span class="cp">]</span><span class="o">)</span>
+        <span class="nc">.range</span><span class="o">(</span><span class="cp">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">255</span><span class="cp">]</span><span class="o">);</span>
+    <span class="o">//</span><span class="nt">draw</span> <span class="nt">bars</span>
+    <span class="nt">var</span> <span class="nt">barWidth</span> <span class="o">=</span> <span class="o">(</span><span class="nt">width-xPadding</span><span class="o">*</span><span class="nt">2</span><span class="o">)/</span><span class="nt">numN</span><span class="o">*</span><span class="nt">0</span><span class="nc">.7</span><span class="o">;</span>
+    <span class="nt">var</span> <span class="nt">svg</span> <span class="o">=</span> <span class="nt">d3</span><span class="nc">.select</span><span class="o">(</span><span class="s2">&quot;div#barGraph&quot;</span><span class="o">)</span><span class="nc">.append</span><span class="o">(</span><span class="s2">&quot;svg&quot;</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;width&quot;</span><span class="o">,</span> <span class="nt">width</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;height&quot;</span><span class="o">,</span> <span class="nt">height</span><span class="o">);</span>
+    <span class="nt">svg</span><span class="nc">.selectAll</span><span class="o">(</span><span class="s2">&quot;g&quot;</span><span class="o">)</span>
+        <span class="nc">.data</span><span class="o">(</span><span class="nt">numList</span><span class="o">)</span>
+        <span class="nc">.enter</span><span class="o">()</span>
+        <span class="nc">.append</span><span class="o">(</span><span class="s2">&quot;g&quot;</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;transform&quot;</span><span class="o">,</span> <span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="nt">xPadding</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nt">yPadding</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="o">)</span>
+        <span class="nc">.append</span><span class="o">(</span><span class="s2">&quot;rect&quot;</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;width&quot;</span><span class="o">,</span> <span class="nt">barWidth</span><span class="o">)</span>            
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;x&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">,</span><span class="nt">i</span><span class="o">)</span><span class="p">{</span>
+            <span class="n">return</span> <span class="n">xScale</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;y&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span><span class="p">{</span>
+            <span class="n">return</span> <span class="nb">height</span><span class="o">-</span><span class="n">yPadding</span><span class="o">-</span><span class="n">yScale</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+        <span class="p">}</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;height&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span> <span class="p">{</span>
+            <span class="n">return</span> <span class="n">yScale</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+        <span class="p">}</span><span class="o">)</span>
+        <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;fill&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span><span class="p">{</span>
+            <span class="n">return</span> <span class="s2">&quot;rgb(0,0,&quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">colScale</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+        <span class="p">}</span><span class="o">);</span>
+
+      <span class="o">//</span><span class="nt">text</span>
+      <span class="nt">svg</span><span class="nc">.selectAll</span><span class="o">(</span><span class="s2">&quot;g&quot;</span><span class="o">)</span>
+          <span class="nc">.append</span><span class="o">(</span><span class="s2">&quot;text&quot;</span><span class="o">)</span>
+          <span class="nc">.text</span><span class="o">(</span><span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span><span class="p">{</span>
+            <span class="n">return</span> <span class="n">d</span><span class="p">;</span>
+          <span class="p">}</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;x&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">,</span><span class="nt">i</span><span class="o">)</span> <span class="p">{</span>
+            <span class="n">return</span> <span class="n">xScale</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">barWidth</span><span class="o">/</span><span class="m">2</span><span class="p">;</span>
+          <span class="p">}</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;y&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span><span class="p">{</span>
+            <span class="n">return</span> <span class="nb">height</span><span class="o">-</span><span class="n">yPadding</span><span class="o">-</span><span class="n">yScale</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">+</span><span class="m">10</span><span class="p">;</span>
+          <span class="p">}</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;fill&quot;</span><span class="o">,</span> <span class="s2">&quot;white&quot;</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="o">,</span><span class="s2">&quot;middle&quot;</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;font-family&quot;</span><span class="o">,</span><span class="s2">&quot;sans-serif&quot;</span><span class="o">)</span>
+          <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;font-size&quot;</span><span class="o">,</span><span class="s2">&quot;11px&quot;</span><span class="o">)</span>
+      <span class="o">//</span><span class="nt">axis</span>
+      <span class="o">//</span> <span class="nt">var</span> <span class="nt">yAxis</span> <span class="o">=</span> <span class="nt">d3</span><span class="nc">.svg.axis</span><span class="o">()</span>
+      <span class="o">//</span>     <span class="nc">.scale</span><span class="o">(</span><span class="nt">yScale</span><span class="o">)</span>
+      <span class="o">//</span>     <span class="nc">.orient</span><span class="o">(</span><span class="s2">&quot;left&quot;</span><span class="o">)</span>
+      <span class="o">//</span>     <span class="nc">.ticks</span><span class="o">(</span><span class="nt">5</span><span class="o">);</span>
+      <span class="o">//</span> <span class="nt">svg</span><span class="nc">.append</span><span class="o">(</span><span class="s2">&quot;g&quot;</span><span class="o">)</span>
+      <span class="o">//</span>     <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;class&quot;</span><span class="o">,</span><span class="s2">&quot;axis&quot;</span><span class="o">)</span>
+      <span class="o">//</span>     <span class="nc">.attr</span><span class="o">(</span><span class="s2">&quot;transform&quot;</span><span class="o">,</span><span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="nt">xPadding</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nt">4</span><span class="o">*</span><span class="nt">yPadding</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="o">)</span>
+      <span class="o">//</span>     <span class="nc">.call</span><span class="o">(</span><span class="nt">yAxis</span><span class="o">);</span>
+
+      <span class="o">//</span><span class="nt">interactivity</span><span class="o">:</span> <span class="nt">highlight</span>
+      <span class="nt">svg</span><span class="nc">.selectAll</span><span class="o">(</span><span class="s2">&quot;g&quot;</span><span class="o">)</span>
+          <span class="nc">.on</span><span class="o">(</span><span class="s2">&quot;mouseover&quot;</span><span class="o">,</span><span class="nt">function</span><span class="o">(</span><span class="nt">d</span><span class="o">)</span><span class="p">{</span>
+
+            <span class="n">var</span> <span class="n">elemSelect</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">);</span>
+            <span class="n">elemSelect</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="o">,</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
+            <span class="n">var</span> <span class="n">point</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">mouse</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">,</span>
+                <span class="n">xPosition</span> <span class="o">=</span> <span class="n">point</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="o">,</span>
+                <span class="n">yPosition</span> <span class="o">=</span> <span class="n">elemSelect</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span><span class="m">-10</span><span class="p">;</span>
+            <span class="n">var</span> <span class="n">tooltip</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;div#barGraph&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;#tooltip&#39;</span><span class="p">);</span>
+            <span class="n">tooltip</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="o">,</span> <span class="n">xPosition</span><span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s2">&quot;top&quot;</span><span class="o">,</span> <span class="n">yPosition</span><span class="o">+</span><span class="s2">&quot;px&quot;</span><span class="p">)</span>
+            <span class="n">tooltip</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;#value&quot;</span><span class="p">)</span><span class="o">.</span><span class="nb">text</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+            <span class="n">tooltip</span><span class="o">.</span><span class="n">classed</span><span class="p">(</span><span class="s2">&quot;hidden&quot;</span><span class="o">,</span> <span class="n">false</span><span class="p">);</span>
+          <span class="p">}</span><span class="o">)</span>
+          <span class="nc">.on</span><span class="o">(</span><span class="s2">&quot;mouseout&quot;</span><span class="o">,</span> <span class="nt">function</span><span class="o">()</span><span class="p">{</span>
+            <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">this</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">transition</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="m">250</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="o">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="err">{</span>
+                    <span class="n">return</span> <span class="s2">&quot;rgb(0,0,&quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">colScale</span><span class="p">(</span><span class="n">d</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+                <span class="p">}</span><span class="o">)</span>
+            <span class="nt">d3</span><span class="nc">.select</span><span class="o">(</span><span class="s2">&quot;#tooltip&quot;</span><span class="o">)</span><span class="nc">.classed</span><span class="o">(</span><span class="s2">&quot;hidden&quot;</span><span class="o">,</span> <span class="nt">true</span><span class="o">);</span>
+
+          <span class="err">}</span><span class="o">);</span>
+
+
+<span class="o">&lt;/</span><span class="nt">script</span><span class="o">&gt;</span>
 </pre></div>
-
-
-<p></head>
-<body>
-    <h3>Practice of interactive bargraph design</h3>
-    <div id="tooltip" class="hidden">
-        <p>The value of this category</p>
-        <p><span id="value">100</span>%</p>
-    </div>
-    <script type="text/javascript" src="d3.v3.min.js">
-    </script>
-    <script type="text/javascript">
-        var width = 500, 
-            height = 300, 
-            xPadding = 25, 
-            yPadding = 15;
-        var numN = 20,
-            numRange = 100;
-        var numList = [];
-        for (var i=0; i&lt;numN; i++){
-            numList.push(Math.floor(Math.random()<em>numRange));
-        }
-        //scale
-        var xScale = d3.scale.linear()
-            .domain([0, numList.length])
-            .range([0, width-2</em>xPadding]);
-        var yScale = d3.scale.linear()
-            .domain([0, d3.max(numList)])
-            .range([0, height-2<em>xPadding]);
-        var colScale = d3.scale.linear()
-            .domain([0, d3.max(numList)])
-            .range([50, 255]);
-        //draw bars
-        var barWidth = (width-xPadding</em>2)/numN*0.7;
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height);
-        svg.selectAll("g")
-            .data(numList)
-            .enter()
-            .append("g")
-            .attr("transform", "translate("+xPadding+","+yPadding+")")
-            .append("rect")
-            .attr("width", barWidth)          <br />
-            .attr("x", function(d,i){
-                return xScale(i);
-            })
-            .attr("y", function(d){
-                return height-yPadding-yScale(d);
-            })
-            .attr("height", function(d) {
-                return yScale(d);
-            })
-            .attr("fill", function(d){
-                return "rgb(0,0,"+Math.floor(colScale(d))+")";
-            });</p>
-<div class="highlight"><pre><span></span>      //text
-      svg.selectAll(&quot;g&quot;)
-          .append(&quot;text&quot;)
-          .text(function(d){
-            return d;
-          })
-          .attr(&quot;x&quot;, function(d,i) {
-            return xScale(i)+barWidth/2;
-          })
-          .attr(&quot;y&quot;, function(d){
-            return height-yPadding-yScale(d)+10;
-          })
-          .attr(&quot;fill&quot;, &quot;white&quot;)
-          .attr(&quot;text-anchor&quot;,&quot;middle&quot;)
-          .attr(&quot;font-family&quot;,&quot;sans-serif&quot;)
-          .attr(&quot;font-size&quot;,&quot;11px&quot;)
-      //axis
-      // var yAxis = d3.svg.axis()
-      //     .scale(yScale)
-      //     .orient(&quot;left&quot;)
-      //     .ticks(5);
-      // svg.append(&quot;g&quot;)
-      //     .attr(&quot;class&quot;,&quot;axis&quot;)
-      //     .attr(&quot;transform&quot;,&quot;translate(&quot;+xPadding+&quot;,&quot;+4*yPadding+&quot;)&quot;)
-      //     .call(yAxis);
-
-      //interactivity: highlight
-      svg.selectAll(&quot;g&quot;)
-          .on(&quot;mouseover&quot;,function(d){
-
-            var elemSelect = d3.select(this).select(&quot;rect&quot;);
-            elemSelect.attr(&quot;fill&quot;,&quot;orange&quot;);
-            var point = d3.mouse(this),
-                xPosition = point[0],
-                yPosition = elemSelect.attr(&quot;y&quot;)-10;
-            var tooltip = d3.select(&#39;body&#39;).select(&#39;#tooltip&#39;);
-            tooltip.style(&quot;left&quot;, xPosition+&quot;px&quot;)
-                .style(&quot;top&quot;, yPosition+&quot;px&quot;)
-            tooltip.select(&quot;#value&quot;).text(d);
-            tooltip.classed(&quot;hidden&quot;, false);
-          })
-          .on(&quot;mouseout&quot;, function(){
-            d3.select(this).select(&quot;rect&quot;)
-                .transition()
-                .duration(250)
-                .attr(&quot;fill&quot;, function(d){
-                    return &quot;rgb(0,0,&quot;+Math.floor(colScale(d))+&quot;)&quot;;
-                })
-            d3.select(&quot;#tooltip&quot;).classed(&quot;hidden&quot;, true);
-
-          });
-
-
-&lt;/script&gt;
-</pre></div>
-
-
-<p></body>
-</html></p>
     </div><!-- /.entry-content -->
 
   </article>
