@@ -196,7 +196,11 @@
             d3.select("#tooltip").classed("hidden", true);
 
           });
-</script>                </article>
+</script>
+
+<hr />
+<p>Tips:
+Direct copy-pasting of the vis code into markdown will cause problems. First you want to avoid selection based on 'body'. Generally you can <strong>create a 'div' with an id inside 'body'</strong> to make it work. Additionally, in this vis, when creating the tooltip and assign it with the x,y-coordinates of the bar you've hovered, you need to get the position of the whole 'div' where your vis resides. You then use this position as a offset and add it to the bar position, to calculate the position of your tooltip. Without this offset, your tooltip will appear on the top left of the whole webpage, rather than that of the vis, since the tooltip position is 'absolute'.</p>                </article>
 <p class="paginator">
     Page 1 / 1
 </p>
