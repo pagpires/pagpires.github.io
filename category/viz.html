@@ -1,235 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Hong's Blog - Viz</title>
-        <link rel="stylesheet" href="https://pagpires.github.io/theme/css/main.css" />
-        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong's Blog Atom Feed" />
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Xinyu Hong" />
+        <meta name="copyright" content="Xinyu Hong" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://pagpires.github.io/">Hong's Blog </a></h1>
-                <nav><ul>
-                    <li><a href="https://pagpires.github.io/category/misc.html">Misc</a></li>
-                    <li class="active"><a href="https://pagpires.github.io/category/viz.html">Viz</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
+<meta property="og:title" content="Hong&#39;s Blog"/>
+<meta name="twitter:title" content="Hong&#39;s Blog">
+<meta property="og:url" content="https://pagpires.github.io" />
+<meta property="og:site_name" content="Hong&#39;s Blog" />
+<meta property="og:article:author" content="Xinyu Hong" />
+        <title>Hong&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/custom.css" media="screen">
+        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong&#39;s Blog - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://pagpires.github.io/"><span class=site-name>Hong's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://pagpires.github.io">Home</a></li>
+                            <li ><a href="https://pagpires.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://pagpires.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://pagpires.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://pagpires.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<div class="row-fluid">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="https://pagpires.github.io/practice-of-interactive-bargraph.html">Practice of interactive bargraph</a></h1>
-<footer class="post-info">
-        <span>Sat 27 August 2016</span>
-<span>| tags: <a href="https://pagpires.github.io/tag/practice.html">practice</a></span>
-</footer><!-- /.post-info --><p>Here below is my practice of interactive bargraph. Here are several features that I've introduced:</p>
-<ul>
-<li>Data-based color</li>
-<li>Highlighting of the mouse-hovered bar, smooth transition</li>
-<li>A tooltip with a position defined by the mouse-hovered bar</li>
-</ul>
-<p>I basically followed the <a href="http://chimera.labs.oreilly.com/books/1230000000345/ch10.html">tutorial</a> written by Scott Murray.</p>
-<style type="text/css">
-    .axis text{
-      font-family: sans-serif;
-      font-size: 11px;
-    }
-    .axis path, 
-    .axi line{
-      fill: none;
-      stroke: black;
-      shape-rendering: crispEdges;
-    }
-    svg rect .hightlight{
-      fill: orange;
-    }
+    <div class="row-fluid">
 
-    #tooltip {
-        position: absolute;
-        width: 200px;
-        height: auto;
-        padding: 10px;
-        background-color: white;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-        pointer-events: none;
-      }
+    </div>
 
-      #tooltip.hidden {
-        display: none;
-      }
-
-      #tooltip p {
-        margin: 0;
-        font-family: sans-serif;
-        font-size: 16px;
-        line-height: 20px;
-      }
-
-      h3 {
-        text-align: center;
-        font-family: sans-serif;
-      }
-</style>
-
-<div id="barGraph">
-  <h3>Practice of interactive bargraph design</h3>
-  <div id="tooltip" class="hidden">
-    <p>The value of this category</p>
-    <p><span id="value">100</span>%</p>
-  </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <header>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="https://pagpires.github.io/archives.html">all posts</a></h1>
+            </header>
+        <div class="recent-posts">
+            <article>
+                <a href="https://pagpires.github.io/practice-of-interactive-bargraph.html">Practice of interactive bargraph  </a>
+                <section>
+                    posted in
+                <a href="https://pagpires.github.io/categories.html#viz-ref">Viz</a>
+                <div class="recent-posts-time">
+                <time pubdate="pubdate" datetime="2016-08-27T00:00:00-04:00">Sat 27 August 2016</time>
+                </div>
+                </section>
+            </article>
+        </div>
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
-
-<script type="text/javascript">
-    var width = 500, 
-        height = 300, 
-        xPadding = 25, 
-        yPadding = 15;
-  var numN = 20,
-      numRange = 100;
-  var numList = [];
-  for (var i=0; i<numN; i++){
-    numList.push(Math.floor(Math.random()*numRange));
-  }
-
-  //scale
-  var xScale = d3.scale.linear()
-      .domain([0, numList.length])
-      .range([0, width-2*xPadding]);
-  var yScale = d3.scale.linear()
-      .domain([0, d3.max(numList)])
-      .range([0, height-2*xPadding]);
-  var colScale = d3.scale.linear()
-      .domain([0, d3.max(numList)])
-      .range([50, 255]);
-    //draw bars
-    var barWidth = (width-xPadding*2)/numN*0.7;
-  var svg = d3.select("div#barGraph").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("id", "canvas");
-  svg.selectAll("g")
-      .data(numList)
-      .enter()
-      .append("g")
-      .attr("transform", "translate("+xPadding+","+yPadding+")")
-      .append("rect")
-      .attr("width", barWidth)          
-      .attr("x", function(d,i){
-        return xScale(i);
-      })
-      .attr("y", function(d){
-        return height-yPadding-yScale(d);
-      })
-      .attr("height", function(d) {
-        return yScale(d);
-      })
-      .attr("fill", function(d){
-        return "rgb(0,0,"+Math.floor(colScale(d))+")";
-        });
-
-      //text
-      svg.selectAll("g")
-          .append("text")
-          .text(function(d){
-            return d;
-          })
-          .attr("x", function(d,i) {
-            return xScale(i)+barWidth/2;
-          })
-          .attr("y", function(d){
-            return height-yPadding-yScale(d)+10;
-          })
-          .attr("fill", "white")
-          .attr("text-anchor","middle")
-          .attr("font-family","sans-serif")
-          .attr("font-size","11px")
-      //axis
-      // var yAxis = d3.svg.axis()
-      //     .scale(yScale)
-      //     .orient("left")
-      //     .ticks(5);
-      // svg.append("g")
-      //     .attr("class","axis")
-      //     .attr("transform","translate("+xPadding+","+4*yPadding+")")
-      //     .call(yAxis);
-
-      //interactivity: highlight
-      var offsetX = document.getElementById('barGraph').offsetLeft;
-      var offsetY = document.getElementById('barGraph').offsetTop;
-      svg.selectAll("g")
-          .on("mouseover",function(d){
-
-            var elemSelect = d3.select(this).select("rect");
-            elemSelect.attr("fill","orange");
-            var point = d3.mouse(this),
-                xPosition = +elemSelect.attr("x"),
-                yPosition = +elemSelect.attr("y")-10;
-
-
-            var tooltip = d3.select('div#barGraph').select('#tooltip');
-            console.log(offsetX, offsetY, xPosition, yPosition);
-            tooltip.style("left", (offsetX+xPosition)+"px")
-                .style("top", (offsetY+ yPosition)+"px");
-            tooltip.select("#value").text(d);
-            tooltip.classed("hidden", false);
-          })
-          .on("mouseout", function(){
-            d3.select(this).select("rect")
-                .transition()
-                .duration(250)
-                .attr("fill", function(d){
-                  return "rgb(0,0,"+Math.floor(colScale(d))+")";
-                })
-            d3.select("#tooltip").classed("hidden", true);
-
-          });
-</script>
-
-<hr />
-<p>Tips:
-Direct copy-pasting of the vis code into markdown will cause problems. First you want to avoid selection based on 'body'. Generally you can <strong>create a 'div' with an id inside 'body'</strong> to make it work. Additionally, in this vis, when creating the tooltip and assign it with the x,y-coordinates of the bar you've hovered, you need to get the position of the whole 'div' where your vis resides. You then use this position as a offset and add it to the bar position, to calculate the position of your tooltip. Without this offset, your tooltip will appear on the top left of the whole webpage, rather than that of the vis, since the tooltip position is 'absolute'.</p>                </article>
-<p class="paginator">
-    Page 1 / 1
-</p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
-            </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://xhong.me/">My Website</a></li>
-                            <li><a href="https://pagpires.github.io/">GitHub Page</a></li>
-                            <li><a href="https://www.kaggle.com/pagpires">Kaggle</a></li>
-                            <li><a href="https://www.freelancer.com/u/pagpires.html">Freelancer</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="https://github.com/pagpires">github</a></li>
-                            <li><a href="https://github.com/pagpires">lala</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
 </html>

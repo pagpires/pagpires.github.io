@@ -1,38 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Practice of interactive bargraph</title>
-        <link rel="stylesheet" href="https://pagpires.github.io/theme/css/main.css" />
-        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong's Blog Atom Feed" />
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Xinyu Hong" />
+        <meta name="copyright" content="Xinyu Hong" />
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://pagpires.github.io/">Hong's Blog </a></h1>
-                <nav><ul>
-                    <li><a href="https://pagpires.github.io/category/misc.html">Misc</a></li>
-                    <li class="active"><a href="https://pagpires.github.io/category/viz.html">Viz</a></li>
-                </ul>
-                </nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="https://pagpires.github.io/practice-of-interactive-bargraph.html" rel="bookmark"
-           title="Permalink to Practice of interactive bargraph">Practice of interactive bargraph</a></h1>
+<meta name="keywords" content="practice, Viz, " />
+
+<meta property="og:title" content="Practice of interactive bargraph "/>
+<meta property="og:url" content="https://pagpires.github.io/practice-of-interactive-bargraph.html" />
+<meta property="og:description" content="data viz practice" />
+<meta property="og:site_name" content="Hong&#39;s Blog" />
+<meta property="og:article:author" content="Xinyu Hong" />
+<meta property="og:article:published_time" content="2016-08-27T00:00:00-04:00" />
+<meta name="twitter:title" content="Practice of interactive bargraph ">
+<meta name="twitter:description" content="data viz practice">
+
+        <title>Practice of interactive bargraph  · Hong&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/custom.css" media="screen">
+        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong&#39;s Blog - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://pagpires.github.io/"><span class=site-name>Hong's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://pagpires.github.io">Home</a></li>
+                            <li ><a href="https://pagpires.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://pagpires.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://pagpires.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://pagpires.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://pagpires.github.io/practice-of-interactive-bargraph.html"> Practice of interactive bargraph  </a></h1>
     </header>
+</div>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <span>Sat 27 August 2016</span>
-<span>| tags: <a href="https://pagpires.github.io/tag/practice.html">practice</a></span>
-</footer><!-- /.post-info -->      <p>Here below is my practice of interactive bargraph. Here are several features that I've introduced:</p>
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>Here below is my practice of interactive bargraph. Here are several features that I've introduced:</p>
 <ul>
 <li>Data-based color</li>
 <li>Highlighting of the mouse-hovered bar, smooth transition</li>
@@ -205,34 +242,52 @@
 <hr />
 <p>Tips:
 Direct copy-pasting of the vis code into markdown will cause problems. First you want to avoid selection based on 'body'. Generally you can <strong>create a 'div' with an id inside 'body'</strong> to make it work. Additionally, in this vis, when creating the tooltip and assign it with the x,y-coordinates of the bar you've hovered, you need to get the position of the whole 'div' where your vis resides. You then use this position as a offset and add it to the bar position, to calculate the position of your tooltip. Without this offset, your tooltip will appear on the top left of the whole webpage, rather than that of the vis, since the tooltip position is 'absolute'.</p>
-    </div><!-- /.entry-content -->
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2016-08-27T00:00:00-04:00">Aug 27, 2016</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://pagpires.github.io/categories.html#viz-ref">Viz</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://pagpires.github.io/tags.html#practice-ref">practice
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://github.com/pagpires" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://xhong.me/">My Website</a></li>
-                            <li><a href="https://pagpires.github.io/">GitHub Page</a></li>
-                            <li><a href="https://www.kaggle.com/pagpires">Kaggle</a></li>
-                            <li><a href="https://www.freelancer.com/u/pagpires.html">Freelancer</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="https://github.com/pagpires">github</a></li>
-                            <li><a href="https://github.com/pagpires">lala</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme <a href="https://github.com/blueicefield/pelican-blueidea/">blueidea</a>, inspired by the default theme.</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
 </html>
