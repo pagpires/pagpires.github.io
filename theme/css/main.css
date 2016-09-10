@@ -71,11 +71,11 @@ body {
 
 /* Headings */
 h1 {font-size: 2em }
-h2 {font-size: 1.571em}	/* 22px */
-h3 {font-size: 1.429em}	/* 20px */
-h4 {font-size: 1.286em}	/* 18px */
-h5 {font-size: 1.143em}	/* 16px */
-h6 {font-size: 1em}		/* 14px */
+h2 {font-size: 1.7em}	
+h3 {font-size: 1.5em}	
+h4 {font-size: 1.286em}	
+h5 {font-size: 1.143em}	
+h6 {font-size: 1em}	
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 400;
@@ -101,8 +101,10 @@ a:hover, a:active {
 }
 
 /* Paragraphs */
+p, ol, ul { font-size: 1.2rem; }
 div.line-block,
-p { margin-top: 1em;
+p { 
+    margin-top: 1em;
     margin-bottom: 1em;}
 
 strong, b {font-weight: bold;}
