@@ -151,7 +151,6 @@
 
 
             var tooltip = d3.select('div#barGraph').select('#tooltip');
-            console.log(offsetX, offsetY, xPosition, yPosition);
             tooltip.style("left", (offsetX+xPosition)+"px")
                 .style("top", (offsetY+ yPosition)+"px");
             tooltip.select("#value").text(d);
