@@ -73,11 +73,15 @@
 <p>Until I saw Edward Tufte published the <a href="https://edwardtufte.github.io/tufte-css/">'Tufte CSS'</a>.</p>
 <p>I came across those famous ET's books when I was a 2nd-year grad student. My PI always emphasized to us the importance of effective scientific communication. Therefore unsurprisingly we had all kinds of ET's books on data visualization as well as some others' work on scientific writing. I read his books and started to know a research field/discipline called data visualization and became more and more interested in it. Also, I really liked the styling in his books, the simplicity, the carefully chosen typography and the famous 'no more than 3 levels of headings'. </p>
 <p>Therefore I changed some of the font-family in 'elegant' to those 'tufte fonts'. You basically go to your blog and inspect-element on the writings with those fonts you don't like, and then search for these fonts in base.html file in your theme folder and replace them. </p>
-<p>Some tweaks to set up 'elegant' theme:
-1. Plugins
-This theme support a search bar, which requires plugin <a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search">'tipue_search'</a> and <a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap">'sitemap'</a>. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.
-2. Template pages
-By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding </p>
+<p>Some tweaks to set up 'elegant' theme:</p>
+<ol>
+<li>Plugins</li>
+</ol>
+<p>This theme support a search bar, which requires plugin <a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search">'tipue_search'</a> and <a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap">'sitemap'</a>. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.</p>
+<ol>
+<li>Template pages</li>
+</ol>
+<p>By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding </p>
 <div class="highlight"><pre><span></span><span class="n">TEMPLATE_PAGES</span> <span class="o">=</span> <span class="p">{</span>
 <span class="s1">&#39;themePATH/elegant/templates/404.html&#39;</span><span class="p">:</span> <span class="s1">&#39;404.html&#39;</span><span class="p">,</span>
 <span class="s1">&#39;themePATH/elegant/templates/search.html&#39;</span><span class="p">:</span> <span class="s1">&#39;search.html&#39;</span><span class="p">,</span>
@@ -85,9 +89,11 @@ By default this theme creates additional static pages like 404.html and search.h
 </pre></div>
 
 
-<p>into your configuation file.
-3. links 'undefined' 
-If you see all the search results are associated with 'undefined' links, check this <a href="https://github.com/talha131/pelican-elegant/issues/147">issue</a> . The easiest hack is to edit tipue_search.py and add <code>'loc': page_url</code> to the <code>node =</code> dicts in both <code>def create_tpage_node</code> and <code>def create_json_node</code>.</p>
+<p>into your configuation file.</p>
+<ol>
+<li>links 'undefined' </li>
+</ol>
+<p>If you see all the search results are associated with 'undefined' links, check this <a href="https://github.com/talha131/pelican-elegant/issues/147">issue</a> . The easiest hack is to edit tipue_search.py and add <code>'loc': page_url</code> to the <code>node =</code> dicts in both <code>def create_tpage_node</code> and <code>def create_json_node</code>.</p>
             
             
             <hr/>
