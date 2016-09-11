@@ -8,12 +8,13 @@
 This theme support a search bar, which requires plugin &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search"&gt;'tipue_search'&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap"&gt;'sitemap'&lt;/a&gt;. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.
 2. Template pages
 By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;TEMPLATE_PAGES = {
-'themePATH/elegant/templates/404.html': '404.html',
-'themePATH/elegant/templates/search.html': 'search.html',
-}&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_PAGES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;themePATH/elegant/templates/404.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;404.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;&amp;#39;themePATH/elegant/templates/search.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;search.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;into your configuation file.
 3. links 'undefined' 
 If you see all the search results are associated with 'undefined' links, check this &lt;a href="https://github.com/talha131/pelican-elegant/issues/147"&gt;issue&lt;/a&gt; . The easiest hack is to edit tipue_search.py and add &lt;code&gt;'loc': page_url&lt;/code&gt; to the &lt;code&gt;node =&lt;/code&gt; dicts in both &lt;code&gt;def create_tpage_node&lt;/code&gt; and &lt;code&gt;def create_json_node&lt;/code&gt;.&lt;/p&gt;</summary><category term="practice"></category></entry><entry><title>It's just a curve</title><link href="https://pagpires.github.io/its-just-a-curve.html" rel="alternate"></link><published>2016-08-12T00:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-12:its-just-a-curve.html</id><summary type="html">&lt;p&gt;After trying different tools for my blogging system, I eventually settled with &lt;strong&gt;Markdown&lt;/strong&gt; + &lt;strong&gt;pelican&lt;/strong&gt; + &lt;strong&gt;github page&lt;/strong&gt;. Here are my reasons.&lt;/p&gt;
