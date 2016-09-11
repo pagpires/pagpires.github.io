@@ -5,43 +5,50 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/archives.html</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/tags.html</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/categories.html</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/404.html</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/search.html</loc>
-<lastmod>2016-09-11T00:54:15-00:00</lastmod>
+<lastmod>2016-09-11T01:04:12-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pagpires.github.io/styling-of-the-blog-using-theme-elegant-with-modifications.html</loc>
+<lastmod>2016-09-11T00:00:00-04:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -61,7 +68,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/category/misc.html</loc>
-<lastmod>2016-08-12T00:00:00-04:56</lastmod>
+<lastmod>2016-09-11T00:00:00-04:56</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -75,7 +82,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/tag/practice.html</loc>
-<lastmod>2016-08-27T00:00:00-04:56</lastmod>
+<lastmod>2016-09-11T00:00:00-04:56</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -89,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/author/xinyu-hong.html</loc>
-<lastmod>2016-08-27T00:00:00-04:56</lastmod>
+<lastmod>2016-09-11T00:00:00-04:56</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
