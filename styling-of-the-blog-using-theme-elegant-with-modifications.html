@@ -75,17 +75,17 @@
 <p>Therefore I changed some of the font-family in 'elegant' to those 'tufte fonts'. You basically go to your blog and inspect-element on the writings with those fonts you don't like, and then search for these fonts in base.html file in your theme folder and replace them. </p>
 <p>Some tweaks to set up 'elegant' theme:</p>
 <ol>
-<li>Plugins
+<li>Plugins<br />
 This theme support a search bar, which requires plugin <a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search">'tipue_search'</a> and <a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap">'sitemap'</a>. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.</li>
-<li>Template pages
-By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding 
+<li>Template pages<br />
+By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding<br />
     :::python
     TEMPLATE_PAGES = {
     'themePATH/elegant/templates/404.html': '404.html',
     'themePATH/elegant/templates/search.html': 'search.html',
-    }
+    }<br />
 into your configuation file.</li>
-<li>links 'undefined' 
+<li>links 'undefined'<br />
 If you see all the search results are associated with 'undefined' links, check this <a href="https://github.com/talha131/pelican-elegant/issues/147">issue</a> . The easiest hack is to edit tipue_search.py and add <code>'loc': page_url</code> to the <code>node =</code> dicts in both <code>def create_tpage_node</code> and <code>def create_json_node</code>.</li>
 </ol>
             
