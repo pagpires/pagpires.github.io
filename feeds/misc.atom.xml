@@ -7,16 +7,18 @@
 &lt;ol&gt;
 &lt;li&gt;Plugins&lt;br /&gt;
 This theme support a search bar, which requires plugin &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search"&gt;'tipue_search'&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap"&gt;'sitemap'&lt;/a&gt;. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.&lt;/li&gt;
-&lt;li&gt;Template pages&lt;br /&gt;
-By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding&lt;br /&gt;
-    :::python
-    TEMPLATE_PAGES = {
-    'themePATH/elegant/templates/404.html': '404.html',
-    'themePATH/elegant/templates/search.html': 'search.html',
-    }&lt;br /&gt;
-into your configuation file.&lt;/li&gt;
-&lt;li&gt;links 'undefined'&lt;br /&gt;
-If you see all the search results are associated with 'undefined' links, check this &lt;a href="https://github.com/talha131/pelican-elegant/issues/147"&gt;issue&lt;/a&gt; . The easiest hack is to edit tipue_search.py and add &lt;code&gt;'loc': page_url&lt;/code&gt; to the &lt;code&gt;node =&lt;/code&gt; dicts in both &lt;code&gt;def create_tpage_node&lt;/code&gt; and &lt;code&gt;def create_json_node&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Template pages&lt;br /&gt;
+By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding&lt;/p&gt;
+&lt;p&gt;:::python
+TEMPLATE_PAGES = {
+'themePATH/elegant/templates/404.html': '404.html',
+'themePATH/elegant/templates/search.html': 'search.html',
+}&lt;br /&gt;
+into your configuation file.
+3. links 'undefined'&lt;br /&gt;
+If you see all the search results are associated with 'undefined' links, check this &lt;a href="https://github.com/talha131/pelican-elegant/issues/147"&gt;issue&lt;/a&gt; . The easiest hack is to edit tipue_search.py and add &lt;code&gt;'loc': page_url&lt;/code&gt; to the &lt;code&gt;node =&lt;/code&gt; dicts in both &lt;code&gt;def create_tpage_node&lt;/code&gt; and &lt;code&gt;def create_json_node&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;</summary><category term="practice"></category></entry><entry><title>It's just a curve</title><link href="https://pagpires.github.io/its-just-a-curve.html" rel="alternate"></link><published>2016-08-12T00:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-12:its-just-a-curve.html</id><summary type="html">&lt;p&gt;After trying different tools for my blogging system, I eventually settled with &lt;strong&gt;Markdown&lt;/strong&gt; + &lt;strong&gt;pelican&lt;/strong&gt; + &lt;strong&gt;github page&lt;/strong&gt;. Here are my reasons.&lt;/p&gt;
 &lt;h5&gt;Markdown&lt;/h5&gt;
 &lt;p&gt;I need a system to write easily. WordPress and Markdown are my choices however Markdown has a better geeky flavor. More importantly, I will integrate the interactive data visualization into the webpage. WordPress can do this with some plugins however it doesn't support JSON to be upload, therefore I would have to upload my data source in my server while uploading the CSS and JS script to WordPress, which is annoying. After I saw this &lt;a href="http://www.nicksuch.com/2014/03/26/d3-sample/"&gt;blog&lt;/a&gt;, it became very natural that Markdown is &lt;em&gt;the choice&lt;/em&gt; to me.&lt;/p&gt;
