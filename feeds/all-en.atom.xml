@@ -5,25 +5,19 @@
 &lt;p&gt;Therefore I changed some of the font-family in 'elegant' to those 'tufte fonts'. You basically go to your blog and inspect-element on the writings with those fonts you don't like, and then search for these fonts in base.html file in your theme folder and replace them. &lt;/p&gt;
 &lt;p&gt;Some tweaks to set up 'elegant' theme:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Plugins&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This theme support a search bar, which requires plugin &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search"&gt;'tipue_search'&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap"&gt;'sitemap'&lt;/a&gt;. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Template pages&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TEMPLATE_PAGES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;themePATH/elegant/templates/404.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;404.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="s1"&gt;&amp;#39;themePATH/elegant/templates/search.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;search.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;into your configuation file.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;links 'undefined' &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;If you see all the search results are associated with 'undefined' links, check this &lt;a href="https://github.com/talha131/pelican-elegant/issues/147"&gt;issue&lt;/a&gt; . The easiest hack is to edit tipue_search.py and add &lt;code&gt;'loc': page_url&lt;/code&gt; to the &lt;code&gt;node =&lt;/code&gt; dicts in both &lt;code&gt;def create_tpage_node&lt;/code&gt; and &lt;code&gt;def create_json_node&lt;/code&gt;.&lt;/p&gt;</summary><category term="practice"></category></entry><entry><title>Practice of interactive bargraph</title><link href="https://pagpires.github.io/practice-of-interactive-bargraph.html" rel="alternate"></link><published>2016-08-27T00:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:practice-of-interactive-bargraph.html</id><summary type="html">&lt;p&gt;Here below is my practice of interactive bargraph. Here are several features that I've introduced:&lt;/p&gt;
+&lt;li&gt;Plugins
+This theme support a search bar, which requires plugin &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search"&gt;'tipue_search'&lt;/a&gt; and &lt;a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap"&gt;'sitemap'&lt;/a&gt;. You need to download 'tipue_search' and 'sitemap' plugins and specify them in your pelican configuration file.&lt;/li&gt;
+&lt;li&gt;Template pages
+By default this theme creates additional static pages like 404.html and search.html. You need to specify them by adding 
+    :::python
+    TEMPLATE_PAGES = {
+    'themePATH/elegant/templates/404.html': '404.html',
+    'themePATH/elegant/templates/search.html': 'search.html',
+    }
+into your configuation file.&lt;/li&gt;
+&lt;li&gt;links 'undefined' 
+If you see all the search results are associated with 'undefined' links, check this &lt;a href="https://github.com/talha131/pelican-elegant/issues/147"&gt;issue&lt;/a&gt; . The easiest hack is to edit tipue_search.py and add &lt;code&gt;'loc': page_url&lt;/code&gt; to the &lt;code&gt;node =&lt;/code&gt; dicts in both &lt;code&gt;def create_tpage_node&lt;/code&gt; and &lt;code&gt;def create_json_node&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;</summary><category term="practice"></category></entry><entry><title>Practice of interactive bargraph</title><link href="https://pagpires.github.io/practice-of-interactive-bargraph.html" rel="alternate"></link><published>2016-08-27T00:00:00-04:00</published><author><name>Xinyu Hong</name></author><id>tag:pagpires.github.io,2016-08-27:practice-of-interactive-bargraph.html</id><summary type="html">&lt;p&gt;Here below is my practice of interactive bargraph. Here are several features that I've introduced:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Data-based color&lt;/li&gt;
 &lt;li&gt;Highlighting of the mouse-hovered bar, smooth transition&lt;/li&gt;
