@@ -77,16 +77,20 @@
 <ol>
 <li>Plugins<br />
 This theme support a search bar, which requires plugin <a href="https://github.com/getpelican/pelican-plugins/tree/master/tipue_search">'tipue_search'</a> and <a href="https://github.com/getpelican/pelican-plugins/tree/master/sitemap">'sitemap'</a>. You need to download <code>tipue_search</code> and <code>sitemap</code> plugins and specify them in your pelican configuration file.</li>
-<li>Template pages<br />
-By default this theme creates additional static pages like <code>404.html</code> and <code>search.html</code>. You need to specify them by adding<div class="highlight"><pre><span></span><span class="n">TEMPLATE_PAGES</span> <span class="o">=</span> <span class="p">{</span>
+<li>
+<p>Template pages<br />
+By default this theme creates additional static pages like <code>404.html</code> and <code>search.html</code>. You need to specify them by adding</p>
+<div class="highlight"><pre><span></span><span class="n">TEMPLATE_PAGES</span> <span class="o">=</span> <span class="p">{</span>
 <span class="s1">&#39;themePATH/elegant/templates/404.html&#39;</span><span class="p">:</span> <span class="s1">&#39;404.html&#39;</span><span class="p">,</span>
 <span class="s1">&#39;themePATH/elegant/templates/search.html&#39;</span><span class="p">:</span> <span class="s1">&#39;search.html&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>into your configuation file.
-3. links 'undefined'<br />
+<p>into your configuation file.</p>
+</li>
+<li>
+<p>Links 'undefined'<br />
 If you see all the search results are associated with 'undefined' links, check this <a href="https://github.com/talha131/pelican-elegant/issues/147">issue</a> . The easiest hack is to edit tipue_search.py and add <code>'loc': page_url</code> to the <code>node =</code> dicts in both <code>def create_tpage_node</code> and <code>def create_json_node</code>.</p>
 </li>
 </ol>
