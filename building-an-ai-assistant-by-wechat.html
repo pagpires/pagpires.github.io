@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Xinyu Hong" />
+        <meta name="copyright" content="Xinyu Hong" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="IoT, AI, " />
+
+<meta property="og:title" content="Building An AI Assistant by WeChat "/>
+<meta property="og:url" content="https://pagpires.github.io/building-an-ai-assistant-by-wechat.html" />
+<meta property="og:description" content="Everyone can turn WeChat into a home-made Jarvis." />
+<meta property="og:site_name" content="Hong&#39;s Blog" />
+<meta property="og:article:author" content="Xinyu Hong" />
+<meta property="og:article:published_time" content="2017-03-20T00:00:00-04:00" />
+<meta name="twitter:title" content="Building An AI Assistant by WeChat ">
+<meta name="twitter:description" content="Everyone can turn WeChat into a home-made Jarvis.">
+
+        <title>Building An AI Assistant by WeChat  · Hong&#39;s Blog
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://pagpires.github.io/theme/css/custom.css" media="screen">
+        <link href="https://pagpires.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Hong&#39;s Blog - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://pagpires.github.io/"><span class=site-name>Hong's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://pagpires.github.io">Home</a></li>
+                            <li ><a href="https://pagpires.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://pagpires.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://pagpires.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://pagpires.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://pagpires.github.io/building-an-ai-assistant-by-wechat.html"> Building An AI Assistant by WeChat  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>After watching Zuckerberg's Jarvis, I've been thinking about creating my own AI assistant. Although Zuckerberg's whole project seemed marvellous, the technology that he implemented in each module is actually mature and achievable. As he mentioned, the most difficult part was to integrate all the interfaces of the connected things into one processor. In my opinion, the AI assistant consists of three parts: controller (front-end), processor (logic), controllee (the object you want to send your command to). Zuckerberg built an App as the controller but personally I think there must be something already available for us. Basically, we can use PC as the processor to control the connected things, and we just need something that is capable to send commands from our cell phone to PC.</p>
+<p>Then I encountered this package: <a href="https://github.com/littlecodersh/ItChat">ItChat</a>, and I believe it will do exactly what I want. WeChat is a chat App that is very popular in China. The ItChat package's core function is to use PC to monitor the messages of your WeChat account. The mechanism under the hood is simple: you can log into web-WeChat on PC via scanning the QR code using your phone, then PC will have the message flow and you will find some way to monitor it. Then, you can set up some rules like: if (message == command): do something. That's it! You can now control the electronics via sending commands through WeChat, as long as your PC is monitoring your WeChat message and your PC can send commands to the electronics of interest.</p>
+<p>In the end, I successfully implemeted a printer mode in WeChat, which controls my home printer to print out whatever content I send. Here is how I achieved it.
+You need:
+1. WeChat account
+2. A computer (with python 2.7 installed, with python package win32api installed)
+3. A connected printer</p>
+<p>First you <code>pip install itchat</code> to install the package. Then in the python script you <code>import itchat</code> and <code>from itchat.content import *</code>. The latter provides different types of WeChat message you want to monitor (like TEXT, IMAGE, NOTE, etc). In order to call printer from python, you also need to <code>import win32api</code>.</p>
+<p>Next you 'register' your own function, which is to execute your function in response to certain WeChat message. The registration is achieved via a provided decorator:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main_list</span><span class="p">():</span>    
+    <span class="nd">@itchat.msg_register</span><span class="p">([</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">MAP</span><span class="p">,</span> <span class="n">CARD</span><span class="p">,</span> <span class="n">NOTE</span><span class="p">,</span> <span class="n">SHARING</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">STATUS</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;ToUserName&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;filehelper&#39;</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Content&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
+            <span class="n">welcome_message</span> <span class="o">=</span> <span class="s2">u&quot;可进入模式:&quot;</span><span class="o">+</span><span class="s1">u&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="s2">u&quot;{}({})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="n">fun_dict_ch</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="n">itchat</span><span class="o">.</span><span class="n">send_msg</span><span class="p">(</span><span class="n">welcome_message</span><span class="p">,</span> <span class="s1">&#39;filehelper&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fun</span> <span class="o">=</span> <span class="n">fun_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Content&#39;</span><span class="p">],</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fun</span><span class="p">:</span>
+                <span class="n">STATUS</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Content&#39;</span><span class="p">]</span>
+                <span class="n">itchat</span><span class="o">.</span><span class="n">send_msg</span><span class="p">(</span><span class="s2">u&quot;进入打印模式。请输入打印内容。</span><span class="se">\n</span><span class="s2">Entering {} mode, pls send the content you want to print.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;Content&#39;</span><span class="p">]),</span> <span class="s1">&#39;filehelper&#39;</span><span class="p">)</span>
+                <span class="n">fun</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">itchat</span><span class="o">.</span><span class="n">send_msg</span><span class="p">(</span><span class="s2">u&quot;您现在在主菜单模式。请输入&#39;H&#39;获得帮助。</span><span class="se">\n</span><span class="s2">You are at MAIN mode. Pls type &#39;H&#39; for options.&quot;</span><span class="p">,</span> <span class="s1">&#39;filehelper&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here showed is the function I used to implement the 'main page', which gives a welcome message and prompts for mode options. The usage to bind WeChat message monitor to specific action is simply using <code>@itchat.msg_register([CONTENT])</code>, note that the content are the types imported from <code>itchat.CONTENT</code>.</p>
+<p>In this implementation, I designed an interactive schema, which first contains 'main page', then ask for different options to enter different 'modes'. To achieve this you will have to register different functions according to different options. However, by default code will regard the last registered function as the valid one. Then here's my TRICK: use a variable <code>STATUS</code> to indicate which mode you are at right now, and put everything except the function definitions into an infinite loop, inside which we register a certain function according to the STATUS every 0.1s.</p>
+<p>The next is the 'printer' function, which receives a message and call the printer to print it. YOu can achieve this by <code>win32api</code>. Basically you store the received message into a temp file, then call <code>win32api.ShellExecute</code> to execute a print action. Please see <a href="http://timgolden.me.uk/python/win32_how_do_i/print.html">this tutorial</a> for details. Note that it may fail if the file format of the temp file is not recognized OR is configured to be opened by a customized App (e.g. use notepad++ as the default for .txt files).</p>
+<p>This toy project is simple but very interesting. Basically you can use it to control every web-connected electronics. This <a href="https://www.youtube.com/watch?v=dS7yqTH0w6A">video</a> shows how it looks like in the end. Have fun!</p>
+<p>Future directions:
+I will implement a 'music player' mode in the near future, which controls the Bose Soundlink at my home to play whatever music I ask. I am also considering implementing a 'surveillance' mode, which receives pictures through a webcam and recognize the people and actions in it, and notify me either when friends are visiting or when someone is stealing packages.</p>
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2017-03-20T00:00:00-04:00">Mar 20, 2017</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://pagpires.github.io/categories.html#ai-ref">AI</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://pagpires.github.io/tags.html#iot-ref">IoT
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Contact</h4>
+    <a href="https://github.com/pagpires" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
