@@ -5,42 +5,42 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/archives.html</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/tags.html</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/categories.html</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/404.html</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pagpires.github.io/search.html</loc>
-<lastmod>2017-03-20T23:42:28-00:00</lastmod>
+<lastmod>2017-03-20T23:45:07-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -48,6 +48,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pagpires.github.io/building-an-ai-assistant-by-wechat.html</loc>
 <lastmod>2017-03-20T00:00:00-04:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pagpires.github.io/2017-new-year-resolution.html</loc>
+<lastmod>2017-01-17T00:00:00-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -82,7 +89,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pagpires.github.io/category/misc.html</loc>
-<lastmod>2016-09-11T00:00:00-04:56</lastmod>
+<lastmod>2017-01-17T00:00:00-04:56</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -104,6 +111,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pagpires.github.io/tag/iot.html</loc>
 <lastmod>2017-03-20T00:00:00-04:56</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pagpires.github.io/tag/new-year-resolution.html</loc>
+<lastmod>2017-01-17T00:00:00-04:56</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
